@@ -59,6 +59,24 @@ describe('Line', () => {
 });
 
 
+describe('Parallelogram', () => {
+    let p = new gcore.Parallelogram(new gcore.Point(1, 1), new gcore.Point(3, 1), new gcore.Point(1, 3), new gcore.Point(3, 3));
+
+    it('Parallelogram should be defined', () => {
+        expect(p).toBeDefined();
+    });
+
+    it('Parallelogram should have center at (2,2)', () => {
+        let c = new gcore.Point(2, 2);
+        expect(c.isEqual(p.center()));
+    });
+
+    it('Parallelogram should have area of 4', () => {
+        expect(p.area()).toBe(4);
+    });
+});
+
+
 describe('Circle', () => {
     it('Circle with radius 1 should have area of PI', () => {
         let c = new gcore.Circle(new gcore.Point(3, 3), 2);
