@@ -81,15 +81,6 @@ export class Circle {
 }
 
 
-export class ColorCircle extends Circle {
-    constructor(center, diameter, color) {
-        super(center, diameter);
-
-        this.color = color;
-    }
-}
-
-
 export class Parallelogram {
     constructor(p1, p2, p3, p4) {
         this.points = [p1, p2, p3, p4];

@@ -42,4 +42,14 @@ describe('Parallelogram solver', () => {
     it('Area should be calculated', () => {
         expect(p.area()).toBe(8);
     });
+
+    let c = solver.approximateCircle(p);
+
+    it('Circle should be defined', () => {
+        expect(c).toBeDefined();
+    });
+
+    it('Circles area should be equal to Parallelograms one', () => {
+        expect(c.area()).toBe(p.area());
+    });
 });

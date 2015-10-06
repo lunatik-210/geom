@@ -1,4 +1,4 @@
-import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint, Parallelogram} from './gcore';
+import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint, Parallelogram, Circle} from './gcore';
 
 
 /*
@@ -53,4 +53,12 @@ export function approximateParallelogram(p1, p2, p3, w_width, w_height)
     }
 
     return new Parallelogram(p1, p2, p3, outcome);
+}
+
+
+export function approximateCircle(parallelogram) {
+    let pArea = parallelogram.area();
+    let center = parallelogram.center();
+    let d = Math.sqrt(pArea / Math.PI) * 2;
+    return new Circle(center, d);
 }
