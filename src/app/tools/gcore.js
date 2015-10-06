@@ -12,6 +12,10 @@ export class Point {
     isEqual(point){
         return point.x === this.x && point.y === this.y;
     }
+
+    isOnTheLine(l){
+        return isPointBelongsToLine(this, l);
+    }
 }
 
 /*
@@ -33,30 +37,10 @@ export class Line {
         const y = (line.a * this.c - this.a * line.c) / denominator;
         return new Point(x, y);
     }
-}
 
-export function createLineByPoints(p1, p2) {
-    const a = p2.y - p1.y;
-    const b = p1.x - p2.x;
-    const c = -p1.y * b - p1.x * a;
-    return new Line(a, b, c);
-}
-
-export function isPointBelongsToLine(p0, l) {
-    return l.a * p0.x + l.b * p0.y + l.c === 0;
-}
-
-export function createLineParallelToLineThroughPoint(l, p0) {
-    if(isPointBelongsToLine(p0, l))
-    {
-        return undefined;
+    isPointBelongs(p) {
+        return isPointBelongsToLine(p, this);
     }
-    const c = -p0.y * l.b - p0.x * l.a;
-    return new Line(l.a, l.b, c);
-}
-
-export function arePointsOnTheSameLine(p1, p2, p3) {
-    return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y) === 0;
 }
 
 export class Circle {
@@ -87,4 +71,32 @@ export class Parallelogram {
         this.p3 = p3;
         this.p4 = p4;
     }
+}
+
+/*
+    Some analytical helpers and 'factories'
+*/
+
+export function isPointBelongsToLine(p0, l) {
+    return l.a * p0.x + l.b * p0.y + l.c === 0;
+}
+
+export function createLineByPoints(p1, p2) {
+    const a = p2.y - p1.y;
+    const b = p1.x - p2.x;
+    const c = -p1.y * b - p1.x * a;
+    return new Line(a, b, c);
+}
+
+export function createLineParallelToLineThroughPoint(l, p0) {
+    if(isPointBelongsToLine(p0, l))
+    {
+        return undefined;
+    }
+    const c = -p0.y * l.b - p0.x * l.a;
+    return new Line(l.a, l.b, c);
+}
+
+export function arePointsOnTheSameLine(p1, p2, p3) {
+    return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y) === 0;
 }
