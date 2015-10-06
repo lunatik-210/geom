@@ -89,7 +89,7 @@ export function createLineByPoints(p1, p2) {
 }
 
 export function createLineParallelToLineThroughPoint(l, p0) {
-    if(isPointBelongsToLine(p0, l))
+    if(p0.isOnTheLine(l))
     {
         return undefined;
     }
