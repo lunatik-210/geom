@@ -41,11 +41,22 @@ export class Line {
     }
 
     isLineParallel(line) {
-        return Math.abs(line.a * this.b - this.a * line.b) < ZERO;
+        return Math.abs(this.a * line.b - line.a * this.b) < ZERO;
     }
 
     isPointBelongs(p) {
         return isPointBelongsToLine(p, this);
+    }
+}
+
+export class RangedLine extends Line {
+    constructor(p1, p2)
+    {
+        let l = createLineByPoints(p1, p2);
+        super(l.a, l.b, l.c);
+
+        this.p1 = p1;
+        this.p2 = p2;
     }
 }
 
@@ -72,10 +83,40 @@ export class ColorCircle extends Circle {
 
 export class Parallelogram {
     constructor(p1, p2, p3, p4) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.p4 = p4;
+        this.points = [p1, p2, p3, p4];
+        let lines = [];
+
+        this.lines = [];
+
+        for(let i=0; i<this.points.length; ++i)
+        {
+            for(let j=i+1; j<this.points.length; ++j)
+            {
+                lines.push(new RangedLine(this.points[i], this.points[j]));
+            }            
+        }
+
+        while(this.lines.length < 4)
+        {
+            let l = lines.shift();
+            let index = undefined;
+
+            for(let i=0; i<lines.length; ++i)
+            {
+                if(l.isLineParallel(lines[i]))
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if(index != undefined)
+            {
+                this.lines.push(l);
+                this.lines.push(lines[index]);
+                lines.slice(index, 1);
+            }
+        }
     }
 }
 

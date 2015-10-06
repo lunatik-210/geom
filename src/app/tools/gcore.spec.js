@@ -34,6 +34,12 @@ describe('Line', () => {
         let l2 = gcore.createLineByPoints(new gcore.Point(3, 2), new gcore.Point(3, 4));
         expect(l1.isLineParallel(l2)).toBeTruthy();        
     });
+
+    it('Lines are parallel', () => {
+        let l1 = gcore.createLineByPoints(new gcore.Point(8, 5), new gcore.Point(6, 3));
+        let l2 = gcore.createLineByPoints(new gcore.Point(13, 6), new gcore.Point(11, 4));
+        expect(l1.isLineParallel(l2)).toBeTruthy();        
+    });
 });
 
 describe('Circle', () => {
