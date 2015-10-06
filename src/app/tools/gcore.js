@@ -3,6 +3,8 @@
     Implements the core structures and maths for doing Geometric calculus
 */
 
+const ZERO = 0.000001;
+
 export class Point {
     constructor(x, y) {
         this.x = x;
@@ -36,6 +38,10 @@ export class Line {
         const x = (line.c * this.b - this.c * line.b) / denominator;
         const y = (line.a * this.c - this.a * line.c) / denominator;
         return new Point(x, y);
+    }
+
+    isLineParallel(line) {
+        return Math.abs(line.a * this.b - this.a * line.b) < ZERO;
     }
 
     isPointBelongs(p) {
@@ -78,7 +84,7 @@ export class Parallelogram {
 */
 
 export function isPointBelongsToLine(p0, l) {
-    return l.a * p0.x + l.b * p0.y + l.c === 0;
+    return Math.abs(l.a * p0.x + l.b * p0.y + l.c) < ZERO;
 }
 
 export function createLineByPoints(p1, p2) {
@@ -98,5 +104,5 @@ export function createLineParallelToLineThroughPoint(l, p0) {
 }
 
 export function arePointsOnTheSameLine(p1, p2, p3) {
-    return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y) === 0;
+    return Math.abs((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y)) < ZERO;
 }

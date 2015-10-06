@@ -28,6 +28,12 @@ describe('Line', () => {
         let intersection = l1.intersectionPoint(l2);
         expect(intersection.isEqual(new gcore.Point(3,3)));
     });
+
+    it('Lines are parallel', () => {
+        let l1 = gcore.createLineByPoints(new gcore.Point(1, 2), new gcore.Point(1, 4));
+        let l2 = gcore.createLineByPoints(new gcore.Point(3, 2), new gcore.Point(3, 4));
+        expect(l1.isLineParallel(l2)).toBeTruthy();        
+    });
 });
 
 describe('Circle', () => {
