@@ -13,6 +13,8 @@ describe('Parallelogram solver', () => {
 
         let outcoumes = solver.calcPossibilities(p1, p2, p3);
 
+        expect(outcoumes).toBeDefined();
+
         for(let i = 0; i<outcoumes.length; i++){
             expect(outcoumes[i].isEqual(r1) || outcoumes[i].isEqual(r2) || outcoumes[i].isEqual(r3)).toBeTruthy();
         }
