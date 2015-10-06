@@ -42,6 +42,22 @@ export function createLineByPoints(p1, p2) {
     return new Line(a, b, c);
 }
 
+export function isPointBelongsToLine(p0, l) {
+    return l.a * p0.x + l.b * p0.y + l.c === 0;
+}
+
+export function createLineParallelToLineThroughPoint(l, p0) {
+    if(isPointBelongsToLine(p0, l))
+    {
+        return undefined;
+    }
+    const c = -p0.y * l.b - p0.x * l.a;
+    return new Line(l.a, l.b, c);
+}
+
+export function arePointsOnTheSameLine(p1, p2, p3) {
+    return (p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y) === 0;
+}
 
 export class Circle {
     constructor(center, diameter) {

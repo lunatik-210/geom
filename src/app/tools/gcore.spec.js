@@ -36,3 +36,28 @@ describe('Circle', () => {
         expect(c.area() === Math.PI).toBeTruthy();
     });
 });
+
+describe('Analytics', () => {
+    let l = gcore.createLineByPoints(new gcore.Point(1, 1), new gcore.Point(2, 2));
+
+    it('Create line which is parallel to another one and goes through the point', () => {
+        let p = new gcore.Point(0, 1);
+        let ll = gcore.createLineParallelToLineThroughPoint(l, p);
+        expect(gcore.isPointBelongsToLine(p, ll)).toBeTruthy();
+    });
+
+    it('Line should not be created when point lies on it', () => {
+        let p = new gcore.Point(3, 3);
+        let ll = gcore.createLineParallelToLineThroughPoint(l, p);
+        expect(ll).toBeUndefined();
+    });
+
+    it('Points lies on the same line', () => {
+        let p1 = new gcore.Point(0, 1);
+        let p2 = new gcore.Point(0, 2);
+        let p3 = new gcore.Point(0, 3);
+        let p4 = new gcore.Point(1, 4);
+        expect(gcore.arePointsOnTheSameLine(p1, p2, p3)).toBeTruthy();
+        expect(gcore.arePointsOnTheSameLine(p1, p2, p4)).toBeFalsy();
+    });
+});
