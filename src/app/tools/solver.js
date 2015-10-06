@@ -27,3 +27,14 @@ export function calcPossibilities(p1, p2, p3) {
 
     return outcomes;
 }
+
+export function filterOneByWindow(outcomes, width, height) {
+    for(let i = 0; i<outcomes.length; i++)
+    {
+        if(outcomes[i].x > 0 && outcomes[i].x < width && outcomes[i].y > 0 && outcomes[i].y < height)
+        {
+            return outcomes[i];
+        }
+    }
+    return undefined;
+}
