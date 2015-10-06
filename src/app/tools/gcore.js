@@ -18,6 +18,10 @@ export class Point {
     isOnTheLine(l){
         return isPointBelongsToLine(this, l);
     }
+
+    sub(point) {
+        return new Point(this.x-point.x, this.y-point.y);
+    }
 }
 
 /*
@@ -86,7 +90,8 @@ export class Parallelogram {
         this.points = [p1, p2, p3, p4];
         let lines = [];
 
-        this.lines = [];
+        this.edges = [];
+        this.diagonals = [];
 
         for(let i=0; i<this.points.length; ++i)
         {
@@ -96,10 +101,12 @@ export class Parallelogram {
             }            
         }
 
-        while(this.lines.length < 4)
+        while(lines.length != 0)
         {
-            let l = lines.shift();
+            let l = lines[0];
             let index = undefined;
+
+            lines.splice(0, 1);
 
             for(let i=0; i<lines.length; ++i)
             {
@@ -110,13 +117,61 @@ export class Parallelogram {
                 }
             }
 
-            if(index != undefined)
+            if(index !== undefined)
             {
-                this.lines.push(l);
-                this.lines.push(lines[index]);
-                lines.slice(index, 1);
+                this.edges.push(l);
+                this.edges.push(lines[index]);
+                lines.splice(index, 1);
+            } else {
+                this.diagonals.push(l);
             }
         }
+    }
+
+    center() {
+        return this.diagonals[0].intersectionPoint(this.diagonals[1]);
+    }
+
+    area() {
+        let l1 = this.edges[0];
+        let l2 = undefined;
+
+        for(let i=1; i<this.edges.length; ++i)
+        {
+            if(!l1.isLineParallel(this.edges[i]))
+            {
+                l2 = this.edges[i];
+                break;
+            }
+        }
+
+        let a = undefined;
+        let b = undefined;
+        let c = undefined;
+
+        if(l1.p1.isEqual(l2.p1))
+        {
+            a = l1.p1;
+            b = l1.p2;
+            c = l2.p2;
+        } else if(l1.p1.isEqual(l2.p2)) {
+            a = l1.p1;
+            b = l1.p2;
+            c = l2.p1;
+        } else if(l1.p2.isEqual(l2.p1)) {
+            a = l1.p2;
+            b = l1.p1;
+            c = l2.p2;            
+        } else {
+            a = l1.p2;
+            b = l1.p1;
+            c = l2.p1;     
+        }
+
+        let ab = b.sub(a);
+        let ac = c.sub(a);
+
+        return Math.abs(ab.x*ac.y -ab.y*ac.x);
     }
 }
 

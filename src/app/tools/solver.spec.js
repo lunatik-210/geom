@@ -32,7 +32,13 @@ describe('Parallelogram solver', () => {
         expect(solver.filterOneByWindow(outcoumes, 0, 0)).toBeUndefined();
     });
 
+    let p = solver.approximateParallelogram(p1, p2, p3, 7, 7);
+
     it('Parallelogram should be defined', () => {
-        expect(solver.approximateParallelogram(p1, p2, p3, 7, 7)).toBeDefined();
+        expect(p).toBeDefined();
+    });
+
+    it('Area should be calculated', () => {
+        expect(p.area()).toBe(8);
     });
 });
