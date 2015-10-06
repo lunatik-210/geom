@@ -1,6 +1,7 @@
 import * as gcore from './gcore';
 import * as solver from './solver';
 
+
 describe('Parallelogram solver', () => {
     let p1 = new gcore.Point(8, 5);
     let p2 = new gcore.Point(13, 6);

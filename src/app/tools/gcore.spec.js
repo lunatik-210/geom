@@ -1,5 +1,6 @@
 import * as gcore from './gcore';
 
+
 describe('Point', () => {
     let p1 = new gcore.Point(1, 1);
     let p2 = new gcore.Point(1, 1);
@@ -13,6 +14,7 @@ describe('Point', () => {
         expect(p3.isEqual(p1.sub(p2)));
     });
 });
+
 
 describe('Line', () => {
     it('Line should have A == 0 when parallel to Ox', () => {
@@ -56,12 +58,14 @@ describe('Line', () => {
     });
 });
 
+
 describe('Circle', () => {
     it('Circle with radius 1 should have area of PI', () => {
         let c = new gcore.Circle(new gcore.Point(3, 3), 2);
         expect(c.area() === Math.PI).toBeTruthy();
     });
 });
+
 
 describe('Analytics', () => {
     let l = gcore.createLineByPoints(new gcore.Point(1, 1), new gcore.Point(2, 2));

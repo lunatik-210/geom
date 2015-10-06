@@ -3,7 +3,9 @@
     Implements the core structures and maths for doing Geometric calculus
 */
 
+
 const ZERO = 0.000001;
+
 
 export class Point {
     constructor(x, y) {
@@ -23,6 +25,7 @@ export class Point {
         return new Point(this.x-point.x, this.y-point.y);
     }
 }
+
 
 /*
     General defenition of the line is xA + yB + C = 0;
@@ -53,6 +56,7 @@ export class Line {
     }
 }
 
+
 export class RangedLine extends Line {
     constructor(p1, p2)
     {
@@ -63,6 +67,7 @@ export class RangedLine extends Line {
         this.p2 = p2;
     }
 }
+
 
 export class Circle {
     constructor(center, diameter) {
@@ -179,9 +184,11 @@ export class Parallelogram {
     Some analytical helpers and 'factories'
 */
 
+
 export function isPointBelongsToLine(p0, l) {
     return Math.abs(l.a * p0.x + l.b * p0.y + l.c) < ZERO;
 }
+
 
 export function createLineByPoints(p1, p2) {
     const a = p2.y - p1.y;
@@ -189,6 +196,7 @@ export function createLineByPoints(p1, p2) {
     const c = -p1.y * b - p1.x * a;
     return new Line(a, b, c);
 }
+
 
 export function createLineParallelToLineThroughPoint(l, p0) {
     if(p0.isOnTheLine(l))
@@ -198,6 +206,7 @@ export function createLineParallelToLineThroughPoint(l, p0) {
     const c = -p0.y * l.b - p0.x * l.a;
     return new Line(l.a, l.b, c);
 }
+
 
 export function arePointsOnTheSameLine(p1, p2, p3) {
     return Math.abs((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y)) < ZERO;

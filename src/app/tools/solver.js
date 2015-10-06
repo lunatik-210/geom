@@ -1,5 +1,6 @@
 import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint, Parallelogram} from './gcore';
 
+
 /*
     Given 3 points on the surface there are 3 possible outcomes
     in order to draw Parallelogram 
@@ -28,6 +29,7 @@ export function calcPossibilities(p1, p2, p3) {
     return outcomes;
 }
 
+
 export function filterOneByWindow(outcomes, width, height) {
     for(let i = 0; i<outcomes.length; i++)
     {
@@ -38,6 +40,7 @@ export function filterOneByWindow(outcomes, width, height) {
     }
     return undefined;
 }
+
 
 export function approximateParallelogram(p1, p2, p3, w_width, w_height)
 {
