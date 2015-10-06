@@ -1,4 +1,4 @@
-import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint} from './gcore';
+import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint, Parallelogram} from './gcore';
 
 /*
     Given 3 points on the surface there are 3 possible outcomes
@@ -37,4 +37,17 @@ export function filterOneByWindow(outcomes, width, height) {
         }
     }
     return undefined;
+}
+
+export function approximateParallelogram(p1, p2, p3, w_width, w_height)
+{
+    let outcoumes = calcPossibilities(p1, p2, p3);
+    let outcome = filterOneByWindow(outcoumes, w_width, w_height);
+    
+    if(!outcome)
+    {
+        return undefined;
+    }
+
+    return new Parallelogram(p1, p2, p3, outcome);
 }

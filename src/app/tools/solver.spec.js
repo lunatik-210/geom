@@ -31,4 +31,8 @@ describe('Parallelogram solver', () => {
     it('Should not get any outcome by window size', () => {
         expect(solver.filterOneByWindow(outcoumes, 0, 0)).toBeUndefined();
     });
+
+    it('Parallelogram should be defined', () => {
+        expect(solver.approximateParallelogram(p1, p2, p3, 7, 7)).toBeDefined();
+    });
 });
