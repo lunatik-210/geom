@@ -1,4 +1,4 @@
-import {Point} from './gcore';
+import {Point} from './geom/gcore';
 
 export class DrawablePoint extends Point {
     constructor(x, y) {

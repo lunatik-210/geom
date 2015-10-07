@@ -1,4 +1,4 @@
-import {DrawablePoint} from '../../tools/konvawrapper';
+import {DrawablePoint} from '../../tools/geom.konva.wrapper';
 
 class KonvastageService {
     constructor($window) {
