@@ -10,6 +10,7 @@
     "animate.css": "~3.3.0",
     "foundation": "~5.5.2",
     "jquery": "~2.1.4",
+    "konva": "~0.9.5",
     "restangular": "~1.5.1"
   },
   "devDependencies": {
