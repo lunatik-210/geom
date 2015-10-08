@@ -13,8 +13,7 @@ export class DrawablePoint extends Point {
             draggable: true
         });
 
-        //this.model.on('dragmove', () => this.updatePos());
-        this.model.on('dragend', () => this.updatePos());
+        this.model.on('dragmove', () => this.updatePos());
     }
 
     updatePos() {

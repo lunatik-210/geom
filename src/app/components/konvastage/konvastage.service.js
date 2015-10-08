@@ -33,7 +33,7 @@ class KonvastageService {
             let pos = this.stage.getPointerPosition();
             let point = new DrawablePoint(pos.x, pos.y);
 
-            point.model.on('dragstart', () => {
+            point.model.on('dragmove', () => {
                 this.layer2.destroy();
                 this.layer3.destroy();
                 this.layer1.remove();
@@ -42,9 +42,7 @@ class KonvastageService {
                 this.stage.add(this.layer2);
                 this.stage.add(this.layer3);
                 this.stage.add(this.layer1);
-            });
 
-            point.model.on('dragend', () => {
                 this.recalculateObjects(w, h);
                 this.stage.draw();
             });
