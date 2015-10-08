@@ -51,6 +51,14 @@ class KonvastageService {
     }
 
     reset() {
+        if(this.layer1) {
+            this.layer1.destroy();
+        }
+
+        if(this.layer2) {
+            this.layer2.destroy();
+        }
+        
         this.layer1 = new Konva.Layer();
         this.layer2 = new Konva.Layer();
         this.stage.add(this.layer2);
