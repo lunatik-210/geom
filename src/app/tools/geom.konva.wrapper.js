@@ -8,7 +8,7 @@ const SHADOW = {
     shadowBlur: 10,
     shadowOffset: {x : 5, y : 5},
     shadowOpacity: 0.5
-}
+};
 
 export class DrawablePoint extends Point {
     constructor(x, y) {
