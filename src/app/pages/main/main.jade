@@ -14,4 +14,4 @@
             span Circle are: 
             span {{main.Math.round(main.scene.circle.area())}}
         .raw
-            button.geo-btn(ng-click="main.resetScene()" ng-hide="!main.scene.parallelogram && !main.scene.circle && !main.scene.points") reset
+            button.geo-btn.btn-animate(ng-click="main.resetScene()" ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points") reset

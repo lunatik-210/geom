@@ -1,3 +1,21 @@
+$btn-animation-in: zoomIn 0.2s;
+$btn-animation-out: zoomOut 0.5s;
+
 button.geo-btn {
   width: 100%;
+}
+
+.btn-animate.geo-btn{
+  &.ng-enter {
+    -webkit-animation: $btn-animation-in;
+    -moz-animation: $btn-animation-in;
+    -ms-animation: $btn-animation-in;
+    animation: $btn-animation-in;
+  }
+  &.ng-leave {
+    -webkit-animation: $btn-animation-out;
+    -moz-animation: $btn-animation-out;
+    -ms-animation: $btn-animation-out;
+    animation: $btn-animation-out;
+  }
 }
