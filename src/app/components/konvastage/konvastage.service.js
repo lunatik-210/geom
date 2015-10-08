@@ -33,8 +33,7 @@ export default class KonvastageService {
                 this._destroyModelObject(this.circle);
                 this.stage.draw();
 
-                this._recalculateObjects(w, h);
-                this.stage.draw();
+                if(this._recalculateObjects(w, h)) { this.stage.draw(); }
             });
 
             this.points.push(point);
@@ -62,11 +61,20 @@ export default class KonvastageService {
         this.points = [];
         this.parallelogram = undefined;
         this.circle = undefined;
+
+        this.pointsAreIncorrect = false;
     }
 
     _recalculateObjects(w, h) {
          if(this.points.length === 3) {
             let pdata = approximateParallelogram(this.points[0], this.points[1], this.points[2], w, h);
+            
+            if(!pdata) {
+                this.pointsAreIncorrect = true;
+                return false;
+            }
+            this.pointsAreIncorrect = false;
+
             this.parallelogram = new DrawableParallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
 
             let cdata = approximateCircle(this.parallelogram);
@@ -74,6 +82,8 @@ export default class KonvastageService {
 
             this.objectsLayer.add(this.parallelogram.model);
             this.objectsLayer.add(this.circle.model);
+
+            return true;
         }
     }
 

@@ -31,6 +31,8 @@ export function calcPossibilities(p1, p2, p3) {
 
 
 export function filterOneByWindow(outcomes, width, height) {
+    if(!outcomes) return undefined;
+
     for(let i = 0; i<outcomes.length; i++)
     {
         if(outcomes[i].x > 0 && outcomes[i].x < width && outcomes[i].y > 0 && outcomes[i].y < height)
@@ -45,12 +47,12 @@ export function filterOneByWindow(outcomes, width, height) {
 export function approximateParallelogram(p1, p2, p3, w_width, w_height)
 {
     let outcoumes = calcPossibilities(p1, p2, p3);
+
+    if(!outcoumes) return undefined;
+
     let p4 = filterOneByWindow(outcoumes, w_width, w_height);
     
-    if(!p4)
-    {
-        return undefined;
-    }
+    if(!p4) return undefined;
 
     return {p1, p2, p3, p4};
 }
