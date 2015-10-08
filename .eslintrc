@@ -12,6 +12,7 @@
     "angular": true,
     "module": true,
     "inject": true,
-    "Konva": true
+    "Konva": true,
+    "$"
   }
 }
