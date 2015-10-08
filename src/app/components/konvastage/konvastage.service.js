@@ -77,6 +77,8 @@ export default class KonvastageService {
             
             if(!pdata) {
                 this.pointsAreIncorrect = true;
+                this.scene.parallelogram = undefined;
+                this.scene.circle = undefined;
                 return false;
             }
             this.pointsAreIncorrect = false;
