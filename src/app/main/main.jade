@@ -1,23 +1,15 @@
 .raw
-    .columns.medium-10
+    .columns.large-10.medium-7.small-6
         konva-stage
-    .columns.medium-2
-        .raw
-            span Point 1: 
-            span {{main.scene.points[0].x}} {{main.scene.points[0].y}}
-        .raw
-            span Point 2: 
-            span {{main.scene.points[1].x}} {{main.scene.points[1].y}}
-        .raw
-            spam Point 3: 
-            span {{main.scene.points[2].x}} {{main.scene.points[2].y}}
-        .raw
+    .columns.large-2.medium-5.small-6
+        .raw(ng-repeat="point in main.scene.points")
+            span Point {{$index + 1}}: 
+            span x={{point.x}} y={{point.y}}
+        .raw(ng-show="main.scene.parallelogram")
             span Parallelogram are: 
             span {{main.scene.parallelogram.area()}}
-        .raw
+        .raw(ng-show="main.scene.circle")
             span Circle are: 
             span {{main.Math.round(main.scene.circle.area())}}
         .raw
             button(ng-click="main.resetScene()") reset
-
-

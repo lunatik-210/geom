@@ -15,5 +15,6 @@ export default class MainController {
 
     resetScene() {
         this.KonvastageService.reset();
+        this.scene = {};
     }
 }
