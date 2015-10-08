@@ -29,6 +29,10 @@ export default class KonvastageService {
             let point = new DrawablePoint(pos.x, pos.y);
 
             point.model.on('dragmove', () => {
+                this._destroyModelObject(this.parallelogram);
+                this._destroyModelObject(this.circle);
+                this.stage.draw();
+
                 this._recalculateObjects(w, h);
                 this.stage.draw();
             });
@@ -62,9 +66,6 @@ export default class KonvastageService {
 
     _recalculateObjects(w, h) {
          if(this.points.length === 3) {
-            this._destroyModelObject(this.parallelogram);
-            this._destroyModelObject(this.circle);
-
             let pdata = approximateParallelogram(this.points[0], this.points[1], this.points[2], w, h);
             this.parallelogram = new DrawableParallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
 
