@@ -1,4 +1,5 @@
-class KonvastageDirective {
+
+export default class KonvastageDirective {
     constructor () {
         'ngInject';
 
@@ -23,5 +24,3 @@ class KonvastageController {
         KonvastageService.init('kanvas_stage');
     }
 }
-
-export default KonvastageDirective;

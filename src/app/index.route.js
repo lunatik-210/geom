@@ -1,4 +1,5 @@
-function routerConfig ($stateProvider, $urlRouterProvider) {
+
+export default function routerConfig ($stateProvider, $urlRouterProvider) {
   'ngInject';
   $stateProvider
     .state('main', {
@@ -10,5 +11,3 @@ function routerConfig ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 }
-
-export default routerConfig;
