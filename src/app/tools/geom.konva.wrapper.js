@@ -1,6 +1,9 @@
 import {Point, Circle, Parallelogram} from './geom/gcore';
 
 
+const STROKE_WIDTH = 2;
+
+
 export class DrawablePoint extends Point {
     constructor(x, y) {
         super(x, y);
@@ -10,7 +13,7 @@ export class DrawablePoint extends Point {
             y: y,
             radius: 5.5,
             stroke: 'red',
-            strokeWidth: 2,
+            strokeWidth: STROKE_WIDTH,
             draggable: true
         });
 
@@ -35,7 +38,7 @@ export class DrawableCircle extends Circle {
               y: center.y,
               radius: diameter / 2.0,
               stroke: 'yellow',
-              strokeWidth: 2
+              strokeWidth: STROKE_WIDTH
         });
     }
 }
@@ -52,7 +55,7 @@ export class DrawableParallelogram extends Parallelogram {
             let line = new Konva.Line({
                   points: [this.edges[i].p1.x, this.edges[i].p1.y, this.edges[i].p2.x, this.edges[i].p2.y],
                   stroke: 'blue',
-                  strokeWidth: 2,
+                  strokeWidth: STROKE_WIDTH,
                   lineCap: 'round',
                   lineJoin: 'round'
                 });
