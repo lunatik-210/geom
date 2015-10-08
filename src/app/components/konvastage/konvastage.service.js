@@ -1,12 +1,11 @@
-import {DrawablePoint} from '../../tools/geom.konva.wrapper';
+import {DrawablePoint, DrawableParallelogram, DrawableCircle} from '../../tools/geom.konva.wrapper';
 import {approximateParallelogram, approximateCircle} from '../../tools/geom/solver';
-import {Parallelogram, Circle} from '../../tools/geom/gcore';
 
 class KonvastageService {
     constructor($window) {
         'ngInject';
+
         this.$window = $window;
-        this.points = [];
     }
 
     init(container) {
@@ -19,12 +18,7 @@ class KonvastageService {
             height: h
         });
 
-        this.layer1 = new Konva.Layer();
-        this.layer2 = new Konva.Layer();
-        this.layer3 = new Konva.Layer();
-        this.stage.add(this.layer2);
-        this.stage.add(this.layer3);
-        this.stage.add(this.layer1);
+        this.reset();
 
         this.stage.on('contentClick', () => {
             if(this.points.length >= 3){
@@ -36,12 +30,9 @@ class KonvastageService {
 
             point.model.on('dragmove', () => {
                 this.layer2.destroy();
-                this.layer3.destroy();
                 this.layer1.remove();
                 this.layer2 = new Konva.Layer();
-                this.layer3 = new Konva.Layer();
                 this.stage.add(this.layer2);
-                this.stage.add(this.layer3);
                 this.stage.add(this.layer1);
 
                 this.recalculateObjects(w, h);
@@ -59,34 +50,25 @@ class KonvastageService {
         return this.stage;
     }
 
+    reset() {
+        this.layer1 = new Konva.Layer();
+        this.layer2 = new Konva.Layer();
+        this.stage.add(this.layer2);
+        this.stage.add(this.layer1);
+
+        this.points = [];
+    }
+
     recalculateObjects(w, h) {
          if(this.points.length === 3) {
             let pdata = approximateParallelogram(this.points[0], this.points[1], this.points[2], w, h);
-            let p = new Parallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
+            let p = new DrawableParallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
 
             let cdata = approximateCircle(p);
-            let c = new Circle(cdata.center, cdata.diameter);
+            let c = new DrawableCircle(cdata.center, cdata.diameter);
 
-            for(let i = 0; i<p.edges.length; ++i)
-            {
-                let line = new Konva.Line({
-                      points: [p.edges[i].p1.x, p.edges[i].p1.y, p.edges[i].p2.x, p.edges[i].p2.y],
-                      stroke: 'blue',
-                      strokeWidth: 2,
-                      lineCap: 'round',
-                      lineJoin: 'round'
-                    });
-                this.layer2.add(line);
-            }
-
-            let circle = new Konva.Circle({
-                  x: c.center.x,
-                  y: c.center.y,
-                  radius: c.diameter / 2.0,
-                  stroke: 'yellow',
-                  strokeWidth: 2
-                });
-            this.layer3.add(circle);
+            this.layer2.add(p.model);
+            this.layer2.add(c.model);
         }
     }
 }
