@@ -2,10 +2,11 @@ import {DrawablePoint, DrawableParallelogram, DrawableCircle} from '../../tools/
 import {approximateParallelogram, approximateCircle} from '../../tools/geom/solver';
 
 export default class KonvastageService {
-    constructor($window) {
+    constructor($window, $rootScope) {
         'ngInject';
 
         this.$window = $window;
+        this.$rootScope = $rootScope;
     }
 
     init(container) {
@@ -21,7 +22,7 @@ export default class KonvastageService {
         this.reset();
 
         this.stage.on('contentClick', () => {
-            if(this.points.length >= 3){
+            if(this.scene.points.length >= 3){
                 return;
             }
 
@@ -29,18 +30,21 @@ export default class KonvastageService {
             let point = new DrawablePoint(pos.x, pos.y);
 
             point.model.on('dragmove', () => {
-                this._destroyModelObject(this.parallelogram);
-                this._destroyModelObject(this.circle);
+                this._destroyModelObject(this.scene.parallelogram);
+                this._destroyModelObject(this.scene.circle);
                 this.stage.draw();
 
                 if(this._recalculateObjects(w, h)) { this.stage.draw(); }
+
+                this._broadcastSceneChanges();
             });
 
-            this.points.push(point);
+            this.scene.points.push(point);
             this.pointsLayer.add(point.model);
             
             this._recalculateObjects(w, h);
             this.stage.draw();
+            this._broadcastSceneChanges();
         });
     }
 
@@ -58,16 +62,18 @@ export default class KonvastageService {
         this.stage.add(this.objectsLayer);
         this.stage.add(this.pointsLayer);
 
-        this.points = [];
-        this.parallelogram = undefined;
-        this.circle = undefined;
+        this.scene = {
+            points: [],
+            parallelogram: undefined,
+            circle: undefined
+        }
 
         this.pointsAreIncorrect = false;
     }
 
     _recalculateObjects(w, h) {
-         if(this.points.length === 3) {
-            let pdata = approximateParallelogram(this.points[0], this.points[1], this.points[2], w, h);
+         if(this.scene.points.length === 3) {
+            let pdata = approximateParallelogram(this.scene.points[0], this.scene.points[1], this.scene.points[2], w, h);
             
             if(!pdata) {
                 this.pointsAreIncorrect = true;
@@ -75,13 +81,13 @@ export default class KonvastageService {
             }
             this.pointsAreIncorrect = false;
 
-            this.parallelogram = new DrawableParallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
+            this.scene.parallelogram = new DrawableParallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
 
-            let cdata = approximateCircle(this.parallelogram);
-            this.circle = new DrawableCircle(cdata.center, cdata.diameter);
+            let cdata = approximateCircle(this.scene.parallelogram);
+            this.scene.circle = new DrawableCircle(cdata.center, cdata.diameter);
 
-            this.objectsLayer.add(this.parallelogram.model);
-            this.objectsLayer.add(this.circle.model);
+            this.objectsLayer.add(this.scene.parallelogram.model);
+            this.objectsLayer.add(this.scene.circle.model);
 
             return true;
         }
@@ -93,5 +99,9 @@ export default class KonvastageService {
             object.model.destroy();
             object = undefined;
         }
+    }
+
+    _broadcastSceneChanges() {
+        this.$rootScope.$broadcast('KonvastageService:onSceneChanged');
     }
 }

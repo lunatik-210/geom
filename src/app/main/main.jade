@@ -1,1 +1,21 @@
-konva-stage
+.raw
+    .columns.medium-10
+        konva-stage
+    .columns.medium-2
+        .raw
+            span Point 1
+            span {{main.scene.points[0].x}}, {{main.scene.points[0].y}}
+        .raw
+            span Point 2
+            span {{main.scene.points[1].x}}, {{main.scene.points[1].y}}
+        .raw
+            spam Point 3
+            span {{main.scene.points[2].x}}, {{main.scene.points[2].y}}
+        .raw
+            span Parallelogram are 
+            span {{main.scene.parallelogram.area()}}
+        .raw
+            span Circle are 
+            span {{main.scene.circle.area()}}
+
+
