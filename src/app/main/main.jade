@@ -1,7 +1,9 @@
 .raw
-    .columns.large-10.medium-7.small-6
+    .columns.large-10.medium-8.small-6
         konva-stage
-    .columns.large-2.medium-5.small-6
+    .columns.large-2.medium-4.small-6
+        .raw
+            button.geo-btn(ng-click="main.goAbout()") About
         .raw(ng-repeat="point in main.scene.points")
             span Point {{$index + 1}}: 
             span x={{point.x}} y={{point.y}}
@@ -12,4 +14,4 @@
             span Circle are: 
             span {{main.Math.round(main.scene.circle.area())}}
         .raw
-            button(ng-click="main.resetScene()") reset
+            button.geo-btn(ng-click="main.resetScene()" ng-hide="!main.scene.parallelogram && !main.scene.circle && !main.scene.points") reset

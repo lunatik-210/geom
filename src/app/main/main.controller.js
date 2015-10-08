@@ -17,4 +17,8 @@ export default class MainController {
         this.KonvastageService.reset();
         this.scene = {};
     }
+
+    goAbout() {
+        
+    }
 }
