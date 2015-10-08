@@ -39,8 +39,6 @@ export default class KonvastageService {
             this._recalculateObjects(w, h);
             this.stage.draw();
         });
-
-        return this.stage;
     }
 
     reset() {
