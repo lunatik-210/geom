@@ -29,18 +29,18 @@ class KonvastageService {
             let point = new DrawablePoint(pos.x, pos.y);
 
             point.model.on('dragmove', () => {
-                this.layer2.destroy();
-                this.layer1.remove();
-                this.layer2 = new Konva.Layer();
-                this.stage.add(this.layer2);
-                this.stage.add(this.layer1);
+                this.objectsLayer.destroy();
+                this.pointsLayer.remove();
+                this.objectsLayer = new Konva.Layer();
+                this.stage.add(this.objectsLayer);
+                this.stage.add(this.pointsLayer);
 
                 this.recalculateObjects(w, h);
                 this.stage.draw();
             });
 
             this.points.push(point);
-            this.layer1.add(point.model);
+            this.pointsLayer.add(point.model);
             
             this.recalculateObjects(w, h);
 
@@ -51,18 +51,18 @@ class KonvastageService {
     }
 
     reset() {
-        if(this.layer1) {
-            this.layer1.destroy();
+        if(this.pointsLayer) {
+            this.pointsLayer.destroy();
         }
 
-        if(this.layer2) {
-            this.layer2.destroy();
+        if(this.objectsLayer) {
+            this.objectsLayer.destroy();
         }
         
-        this.layer1 = new Konva.Layer();
-        this.layer2 = new Konva.Layer();
-        this.stage.add(this.layer2);
-        this.stage.add(this.layer1);
+        this.pointsLayer = new Konva.Layer();
+        this.objectsLayer = new Konva.Layer();
+        this.stage.add(this.objectsLayer);
+        this.stage.add(this.pointsLayer);
 
         this.points = [];
     }
@@ -75,8 +75,8 @@ class KonvastageService {
             let cdata = approximateCircle(p);
             let c = new DrawableCircle(cdata.center, cdata.diameter);
 
-            this.layer2.add(p.model);
-            this.layer2.add(c.model);
+            this.objectsLayer.add(p.model);
+            this.objectsLayer.add(c.model);
         }
     }
 }
