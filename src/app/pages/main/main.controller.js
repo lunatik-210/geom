@@ -1,8 +1,9 @@
 
 export default class MainController {
-    constructor(KonvastageService, $scope) {
+    constructor(KonvastageService, $scope, $state) {
         'ngInject';
 
+        this.$state = $state;
         this.Math = Math;
         this.KonvastageService = KonvastageService;
 
@@ -19,6 +20,6 @@ export default class MainController {
     }
 
     goAbout() {
-        
+        this.$state.go('about');
     }
 }

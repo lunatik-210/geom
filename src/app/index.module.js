@@ -1,10 +1,7 @@
-import config from './index.config';
 import routerConfig from './index.route';
-import MainController from './main/main.controller';
 
-import './components/konvastage/konvastage.module';
+import './pages/main/main.module';
+import './pages/about/about.module';
 
-angular.module('geom', ['ngAnimate', 'restangular', 'ui.router', 'ui.keypress', 'mm.foundation', 'app.components.konvastage'])
-  .config(config)
-  .config(routerConfig)
-  .controller('MainController', MainController);
+angular.module('geom', ['ui.router', 'mainModule', 'aboutModule'])
+  .config(routerConfig);
