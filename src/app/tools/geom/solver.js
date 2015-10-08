@@ -1,4 +1,4 @@
-import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint, Parallelogram, Circle} from './gcore';
+import {arePointsOnTheSameLine, createLineByPoints, createLineParallelToLineThroughPoint} from './gcore';
 
 
 /*
@@ -45,20 +45,20 @@ export function filterOneByWindow(outcomes, width, height) {
 export function approximateParallelogram(p1, p2, p3, w_width, w_height)
 {
     let outcoumes = calcPossibilities(p1, p2, p3);
-    let outcome = filterOneByWindow(outcoumes, w_width, w_height);
+    let p4 = filterOneByWindow(outcoumes, w_width, w_height);
     
-    if(!outcome)
+    if(!p4)
     {
         return undefined;
     }
 
-    return new Parallelogram(p1, p2, p3, outcome);
+    return {p1, p2, p3, p4};
 }
 
 
 export function approximateCircle(parallelogram) {
     let pArea = parallelogram.area();
     let center = parallelogram.center();
-    let d = Math.sqrt(pArea / Math.PI) * 2;
-    return new Circle(center, d);
+    let diameter = Math.sqrt(pArea / Math.PI) * 2;
+    return {center, diameter};
 }

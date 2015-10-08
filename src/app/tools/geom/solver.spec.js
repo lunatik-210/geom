@@ -33,7 +33,13 @@ describe('Parallelogram solver', () => {
         expect(solver.filterOneByWindow(outcoumes, 0, 0)).toBeUndefined();
     });
 
-    let p = solver.approximateParallelogram(p1, p2, p3, 7, 7);
+    let pdata = solver.approximateParallelogram(p1, p2, p3, 7, 7);
+
+    it('Data for making parallelogram should be defined', () => {
+        expect(pdata).toBeDefined();
+    });
+
+    let p = new gcore.Parallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
 
     it('Parallelogram should be defined', () => {
         expect(p).toBeDefined();
@@ -43,7 +49,13 @@ describe('Parallelogram solver', () => {
         expect(p.area()).toBe(8);
     });
 
-    let c = solver.approximateCircle(p);
+    let cdata = solver.approximateCircle(p);
+
+    it('Data for making circle should be defined', () => {
+        expect(cdata).toBeDefined();
+    });
+
+    let c = new gcore.Circle(cdata.center, cdata.diameter);
 
     it('Circle should be defined', () => {
         expect(c).toBeDefined();

@@ -1,5 +1,6 @@
 import {DrawablePoint} from '../../tools/geom.konva.wrapper';
 import {approximateParallelogram, approximateCircle} from '../../tools/geom/solver';
+import {Parallelogram, Circle} from '../../tools/geom/gcore';
 
 class KonvastageService {
     constructor($window) {
@@ -60,8 +61,11 @@ class KonvastageService {
 
     recalculateObjects(w, h) {
          if(this.points.length === 3) {
-            let p = approximateParallelogram(this.points[0], this.points[1], this.points[2], w, h);
-            let c = approximateCircle(p);
+            let pdata = approximateParallelogram(this.points[0], this.points[1], this.points[2], w, h);
+            let p = new Parallelogram(pdata.p1, pdata.p2, pdata.p3, pdata.p4);
+
+            let cdata = approximateCircle(p);
+            let c = new Circle(cdata.center, cdata.diameter);
 
             for(let i = 0; i<p.edges.length; ++i)
             {
