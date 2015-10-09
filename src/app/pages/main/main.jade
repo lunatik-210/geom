@@ -1,11 +1,12 @@
 .raw
   .columns.large-10.medium-8.small-6
-    konva-stage
+    .scene
+      konva-stage
   .columns.large-2.medium-4.small-6
     .raw
       button.geo-btn(ng-click="main.goAbout()") About
     .raw
-      table.geo-panel(ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points")
+      table.geo-panel(ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points.length")
         tr(ng-repeat="point in main.scene.points")
           td Point {{$index + 1}}
           td x={{point.x}} y={{point.y}}
@@ -16,4 +17,4 @@
           td Circle area
           td {{main.Math.round(main.scene.circle.area())}}
     .raw
-      button.geo-btn.btn-animate(ng-click="main.resetScene()" ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points") reset
+      button.geo-btn.btn-animate(ng-click="main.resetScene()" ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points.length") reset

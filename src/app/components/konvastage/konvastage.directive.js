@@ -1,11 +1,13 @@
 
+const CONTAINER_NAME = 'kanvas_stage';
+
 export default class KonvastageDirective {
     constructor () {
         'ngInject';
 
         let directive = {
             restrict: 'E',
-            template: '<div id="kanvas_stage"></div>',
+            template: `<div id='${CONTAINER_NAME}'></div>`,
             scope: false,
             replace: true,
             controller: KonvastageController,
@@ -18,9 +20,17 @@ export default class KonvastageDirective {
 }
 
 class KonvastageController {
-    constructor (KonvastageService) {
+    constructor (KonvastageService, $window) {
         'ngInject';
 
-        KonvastageService.init('kanvas_stage');
+        let w = angular.element(`#${CONTAINER_NAME}`).width();
+        let h = $window.innerHeight;
+        KonvastageService.init(CONTAINER_NAME, w, h);
+
+        angular.element($window).bind('resize', function () {
+            let w = angular.element(`#${CONTAINER_NAME}`).width();
+            let h = $window.innerHeight;
+            KonvastageService.reInit(CONTAINER_NAME, w, h);
+        });
     }
 }

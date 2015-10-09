@@ -4,6 +4,12 @@ $btn-animation-out: zoomOut 0.5s;
 $geo-panel-animation-in: bounceIn 0.2s;
 $geo-panel-animation-out: bounceOut 1.2s;
 
+.scene {
+	width: 100%;
+	height: 100%;
+	border: 10px solid #466d98;
+}
+
 button.geo-btn {
   width: 100%;
 }

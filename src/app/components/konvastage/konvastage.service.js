@@ -2,17 +2,13 @@ import {DrawablePoint, DrawableParallelogram, DrawableCircle} from '../../tools/
 import {approximateParallelogram, approximateCircle} from '../../tools/geom/solver';
 
 export default class KonvastageService {
-    constructor($window, $rootScope) {
+    constructor($rootScope) {
         'ngInject';
 
-        this.$window = $window;
         this.$rootScope = $rootScope;
     }
 
-    init(container) {
-        let w = this.$window.innerWidth;
-        let h = this.$window.innerHeight;
-
+    init(container, w, h) {
         this.stage = new Konva.Stage({
             container: container,
             width: w,
@@ -69,6 +65,13 @@ export default class KonvastageService {
         }
 
         this.pointsAreIncorrect = false;
+    }
+
+    reInit(container, w, h) {
+        this.reset();
+        this.stage.destroy();
+        this.init(container, w, h);
+        this._broadcastSceneChanges();
     }
 
     _recalculateObjects(w, h) {
