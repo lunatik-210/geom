@@ -10,6 +10,7 @@ export default class MainController {
         $scope.$on('KonvastageService:onSceneChanged', () => {
             $scope.$apply(() => {
                 this.scene = KonvastageService.scene;
+                this.scene.pointsAreIncorrect = KonvastageService.pointsAreIncorrect;
             });
         });
     }

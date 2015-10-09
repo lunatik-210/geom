@@ -6,6 +6,8 @@
     .raw
       button.geo-btn(ng-click="main.goAbout()") About
     .raw
+      span.warning.round.label(ng-if="main.scene.pointsAreIncorrect") Wrong point positions
+    .raw
       table.geo-panel(ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points.length")
         tr(ng-repeat="point in main.scene.points")
           td Point {{$index + 1}}
