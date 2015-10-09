@@ -1,6 +1,9 @@
 $btn-animation-in: zoomIn 0.2s;
 $btn-animation-out: zoomOut 0.5s;
 
+$geo-panel-animation-in: bounceIn 0.2s;
+$geo-panel-animation-out: bounceOut 1.2s;
+
 button.geo-btn {
   width: 100%;
 }
@@ -17,5 +20,20 @@ button.geo-btn {
     -moz-animation: $btn-animation-out;
     -ms-animation: $btn-animation-out;
     animation: $btn-animation-out;
+  }
+}
+
+table.geo-panel {
+  &.ng-enter {
+    -webkit-animation: $geo-panel-animation-in;
+    -moz-animation: $geo-panel-animation-in;
+    -ms-animation: $geo-panel-animation-in;
+    animation: $geo-panel-animation-in;
+  }
+  &.ng-leave {
+    -webkit-animation: $geo-panel-animation-out;
+    -moz-animation: $geo-panel-animation-out;
+    -ms-animation: $geo-panel-animation-out;
+    animation: $geo-panel-animation-out;
   }
 }

@@ -1,17 +1,19 @@
 .raw
-    .columns.large-10.medium-8.small-6
-        konva-stage
-    .columns.large-2.medium-4.small-6
-        .raw
-            button.geo-btn(ng-click="main.goAbout()") About
-        .raw(ng-repeat="point in main.scene.points")
-            span Point {{$index + 1}}: 
-            span x={{point.x}} y={{point.y}}
-        .raw(ng-show="main.scene.parallelogram")
-            span Parallelogram are: 
-            span {{main.scene.parallelogram.area()}}
-        .raw(ng-show="main.scene.circle")
-            span Circle are: 
-            span {{main.Math.round(main.scene.circle.area())}}
-        .raw
-            button.geo-btn.btn-animate(ng-click="main.resetScene()" ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points") reset
+  .columns.large-10.medium-8.small-6
+    konva-stage
+  .columns.large-2.medium-4.small-6
+    .raw
+      button.geo-btn(ng-click="main.goAbout()") About
+    .raw
+      table.geo-panel(ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points")
+        tr(ng-repeat="point in main.scene.points")
+          td Point {{$index + 1}}
+          td x={{point.x}} y={{point.y}}
+        tr(ng-if="main.scene.parallelogram")
+          td Parallelogram area
+          td {{main.scene.parallelogram.area()}}
+        tr(ng-if="main.scene.circle")
+          td Circle area
+          td {{main.Math.round(main.scene.circle.area())}}
+    .raw
+      button.geo-btn.btn-animate(ng-click="main.resetScene()" ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points") reset
