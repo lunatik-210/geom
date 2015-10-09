@@ -6,6 +6,7 @@ export default class KonvastageService {
         'ngInject';
 
         this.$rootScope = $rootScope;
+        this.optimize = false;
     }
 
     init(container, w, h) {
@@ -25,15 +26,31 @@ export default class KonvastageService {
             let pos = this.stage.getPointerPosition();
             let point = new DrawablePoint(pos.x, pos.y);
 
-            point.model.on('dragmove', () => {
-                this._destroyModelObject(this.scene.parallelogram);
-                this._destroyModelObject(this.scene.circle);
-                this.stage.batchDraw();
+            if(!this.optimize) {
+               point.model.on('dragmove', () => {
+                    point.updatePos();
 
-                if(this._recalculateObjects(w, h)) { this.stage.batchDraw(); }
+                    this._destroyModelObject(this.scene.parallelogram);
+                    this._destroyModelObject(this.scene.circle);
+                    this.stage.batchDraw();
 
-                this._broadcastSceneChanges();
-            });
+                    if(this._recalculateObjects(w, h)) { this.stage.batchDraw(); }
+                    this._broadcastSceneChanges();
+                });
+            } else {
+                point.model.on('dragstart', () => {
+                    this._destroyModelObject(this.scene.parallelogram);
+                    this._destroyModelObject(this.scene.circle);
+                    this.stage.batchDraw();
+                });
+
+                point.model.on('dragend', () => {
+                    point.updatePos();
+                    
+                    if(this._recalculateObjects(w, h)) { this.stage.batchDraw(); }
+                    this._broadcastSceneChanges();
+                });
+            }
 
             this.scene.points.push(point);
             this.pointsLayer.add(point.model);
@@ -71,6 +88,11 @@ export default class KonvastageService {
         this.reset();
         this.stage.destroy();
         this.init(container, w, h);
+        this._broadcastSceneChanges();
+    }
+
+    setOptimization(optimize){
+        this.optimize = optimize;
         this._broadcastSceneChanges();
     }
 

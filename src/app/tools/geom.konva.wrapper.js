@@ -27,8 +27,6 @@ export class DrawablePoint extends Point {
 
         this.model = new Konva.Circle(conf);
         this.model.perfectDrawEnabled(false);
-
-        this.model.on('dragmove', () => this.updatePos());
     }
 
     updatePos() {

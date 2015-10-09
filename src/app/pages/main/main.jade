@@ -1,12 +1,15 @@
 .raw
   .columns.large-10.medium-8.small-6
     .scene
-      konva-stage
+      konva-stage(optimize='main.optimize')
   .columns.large-2.medium-4.small-6
     .raw
       button.geo-btn(ng-click="main.goAbout()") About
     .raw
-      span.alert.round.label(ng-if="main.scene.pointsAreIncorrect") Wrong point positions
+      input(id="optimization" type="checkbox" ng-model="main.optimize")
+      label(for="optimization") Optimize for slow browsers
+    .raw
+      span.alert.round.label(ng-if="main.scene.pointsAreIncorrect") Wrong point position
     .raw
       table.geo-panel(ng-if="main.scene.parallelogram || main.scene.circle || main.scene.points.length")
         tr(ng-repeat="point in main.scene.points")
