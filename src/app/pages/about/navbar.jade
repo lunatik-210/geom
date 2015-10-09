@@ -1,0 +1,20 @@
+div
+  top-bar
+    ul.title-area
+      li.name
+        h1
+          a(ui-sref="main") View Demo
+      li.menu-icon(toggle-top-bar='')
+        a(href='#') Menu
+    top-bar-section
+      ul.left
+        li(ui-sref-active="active")
+          a(ui-sref="about.rules") Rules
+        li(ui-sref-active="active")
+          a(ui-sref="about.solution") Solution
+        li(ui-sref-active="active")
+          a(ui-sref="about.technologies") Technologies
+        li(ui-sref-active="active")
+          a(ui-sref="about.architecture") Architecture
+        li(ui-sref-active="active")
+          a(ui-sref="about.testing") Testing
