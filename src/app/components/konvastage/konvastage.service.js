@@ -28,9 +28,9 @@ export default class KonvastageService {
             point.model.on('dragmove', () => {
                 this._destroyModelObject(this.scene.parallelogram);
                 this._destroyModelObject(this.scene.circle);
-                this.stage.draw();
+                this.stage.batchDraw();
 
-                if(this._recalculateObjects(w, h)) { this.stage.draw(); }
+                if(this._recalculateObjects(w, h)) { this.stage.batchDraw(); }
 
                 this._broadcastSceneChanges();
             });

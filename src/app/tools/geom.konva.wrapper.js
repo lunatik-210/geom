@@ -26,6 +26,7 @@ export class DrawablePoint extends Point {
         $.extend(conf, SHADOW);
 
         this.model = new Konva.Circle(conf);
+        this.model.perfectDrawEnabled(false);
 
         this.model.on('dragmove', () => this.updatePos());
     }
@@ -54,6 +55,7 @@ export class DrawableCircle extends Circle {
         $.extend(conf, SHADOW);
 
         this.model = new Konva.Circle(conf);
+        this.model.perfectDrawEnabled(false);
     }
 }
 
@@ -76,6 +78,7 @@ export class DrawableParallelogram extends Parallelogram {
             $.extend(conf, SHADOW);
 
             let line = new Konva.Line(conf);
+            line.perfectDrawEnabled(false);
             this.model.add(line);
         }
     }
