@@ -1,16 +1,16 @@
 
 export default function routerConfig ($stateProvider, $urlRouterProvider) {
     'ngInject';
-    $urlRouterProvider.when('/about', '/about/rules');
+    $urlRouterProvider.when('/about', '/about/task');
 
     $stateProvider.state('about', {
         url: '/about',
         templateUrl: 'app/pages/about/about.html'
     });
 
-    $stateProvider.state('about.rules', {
-        url: '/rules',
-        templateUrl: 'app/pages/about/templates/rules.html'
+    $stateProvider.state('about.task', {
+        url: '/task',
+        templateUrl: 'app/pages/about/templates/task.html'
     });
 
     $stateProvider.state('about.solution', {

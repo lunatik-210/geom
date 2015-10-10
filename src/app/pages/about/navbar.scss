@@ -1,0 +1,25 @@
+.top-bar {
+  background-color: #fff;
+  border-bottom: 5px solid #EBB05B;
+
+  li a:not(.button) {
+    color: black;
+  }
+
+  .top-bar-section li a:not(.button) {
+    background-color: #EBB05B;
+    color: black;
+  }
+  .top-bar-section li a:not(.button):hover {
+    background-color: #D39A46;
+    color: black;
+  }
+  .top-bar-section ul li.active > a:not(.button) {
+      background: #fff;
+      color: black;
+  }
+  .top-bar-section ul li.active > a:not(.button):hover {
+      background: #fff;
+      color: black;
+  }
+}

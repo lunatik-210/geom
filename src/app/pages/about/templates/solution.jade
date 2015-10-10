@@ -1,1 +1,29 @@
-h1 Solution
+div
+  h1 Theory
+  span 
+  | <img class="b-solution-triangle" src="assets/images/triangle.png") alt="triangle.png">
+  | Given any three points (<b>a</b>, <b>b</b> and <b>c</b>) on 
+  | <a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system">Cartesian coordinate system </a> 
+  | it's always possible to draw three parallelograms like in a pitcure (<b>Cabc</b>, <b>Bcab</b> and <b>Aacb</b>). 
+  | Each calculation is simular so we consider only <b>Cabc</b>. In order to draw that parallelogram we need to find point <b>C</b>.
+  | As we can see <b>C</b> is an intersection ponit of <b>AC</b> and <b>BC</b>. <br><br>
+  | <b>BC</b> is parallel to <b>ba</b> and goes through <b>c</b>. We know that a
+  | <a href="https://en.wikipedia.org/wiki/Line_(geometry)"> line </a> can be represented with equasion <b>C1*x+C2*y+C3=0</b>.
+  | Then it's possible to find an equasion of line <b>BC</b> due to the fact that we know equasion of line <b>ba</b> and point <b>c</b>. <br><br>
+  | <iframe width="560" height="315" src="https://www.youtube.com/embed/TrONIeOpJHg" frameborder="0" allowfullscreen></iframe><br><br>
+  | And the last bit is, knowing the equations of <b>AC</b> and <b>BC</b> we can find intersection point <b>C</b> 
+  | by simply solving the equasion that is presented in <a href="https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection"> wikipedia</a>.
+  h1 Implementation
+  span 
+  | The code is avaliable on github (<a href="https://github.com/lunatik-210/geom">https://github.com/lunatik-210/geom</a>).<br><br>
+  | The only point should be made about an implementation that it actually finds all three solutions but only draws one.
+  | In case there's no enugh space for drawing at least one of those parallelograms it will display an error and ask you to choose
+  | another position for points.
+  h1 Demo
+  ul
+    li Click three times in a free space to draw parallelogram and circle
+    li Move points by drag and drop. (parallelogram and circle will be redrawn)
+    li Reset everything if you want to start from the beginning
+    li Use mode for slow browsers it will only redraw a scene once you do a point drop (almost useless - just an experiment :))
+  a(ui-sref="main") GO
+  span  to the demo and enjoy ;)
