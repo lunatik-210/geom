@@ -22,13 +22,16 @@ export default class KonvastageDirective {
 }
 
 class KonvastageController {
-    constructor (KonvastageService, $window, $scope) {
+    constructor (KonvastageService, $window, $scope, $state) {
         'ngInject';
 
         this._initScene(KonvastageService, $window);
 
         angular.element($window).bind('resize', () => {
-            this._reInitScene(KonvastageService, $window);
+            if($state.current.name==='main')
+            {
+                this._reInitScene(KonvastageService, $window);
+            }
         });
 
         $scope.$watch(() => this.optimize, () => {
