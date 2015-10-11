@@ -1,7 +1,8 @@
 
-.b-technologies div {
+.b-technologies .columns {
   min-height: 150px;
   padding: 5px;
+  margin-top: 20px;
 }
 
 img.b-technologies-tech-logo {
@@ -9,4 +10,11 @@ img.b-technologies-tech-logo {
   margin: 7px 7px 7px 7px;  
   width: 100px;
   height: auto;
+}
+
+.b-technologies .columns:hover {
+  border: 3px solid #466d98;
+  border-style: dashed;
+  border-color: #FFDFB1;
+  padding: 2px;
 }
