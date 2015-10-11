@@ -1,1 +1,38 @@
-h1 Architecture
+.raw
+  h1 Architecture
+  span I used to use the following project structure. <br><br>
+  span
+    | /app <br>
+    | /app/components <br>
+    | /app/pages/ <br>
+    | /app/tools <br><br>
+  h3 /app/tools
+  span
+    | /app/tools/geom/* <br>
+    | /app/tools/geom.konva.wrapper.js <br><br>
+  span 
+    | Geom is the folder where I put the logic which is not related to angular or any other framework. 
+    | It's absolutely reusable parts of code. In our case all the logic which is connected to analytical geometry is located there as well as
+    | such classes as Point, Line, Circle, Parallelogram.<br><br>
+    | Then there's also a Konva wrapper for Point, Line, Circle and Parallelogram that adds drawable properties.<br><br>
+  h3 /app/components
+  span
+    | /app/components/konvastage <br>
+    | /app/components/konvastage/konvastage.directive.js <br>
+    | /app/components/konvastage/konvastage.module.js <br>
+    | /app/components/konvastage/konvastage.service.js <br><br>
+  span
+    | Here you see an example of component. Usually it's also a very self independent code but it's related to angular framework somehow. 
+    | However I always try to write that code as portable as possible in order it can be reused in other frameworks.
+    | In our case <b>konvastage.service.js</b> implements a scene that uses <b>/app/tools/geom*</b> to render objects and interacts with a user.<br><br>
+  h3 /app/pages
+  span
+    | /app/pages/main <br>
+    | /app/pages/main/main.controller.js <br>
+    | /app/pages/main/main.router.js <br>
+    | /app/pages/main/main.module.js <br>
+    | /app/pages/main/main.jade <br>
+    | /app/pages/main/main.scss <br><br>
+  span
+    | Pages are very angular specific but I keep it as tiny as possible from functional point of view. You can think of it as View in MVC pattern.
+    | In pages I combine components and build presentation layer.
