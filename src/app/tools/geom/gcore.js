@@ -80,7 +80,11 @@ export class Circle {
     }
 }
 
-
+/*
+    Parallelogram is consisted of 4 points, 4 edges and 2 diagonals.
+    The constructor is a bit inefficient but strong enough if points
+    are coming in random order.
+*/
 export class Parallelogram {
     constructor(p1, p2, p3, p4) {
         this.points = [p1, p2, p3, p4];
@@ -89,6 +93,7 @@ export class Parallelogram {
         this.edges = [];
         this.diagonals = [];
 
+        // generate all possible lines that can be constructed from 4 given points
         for(let i=0; i<this.points.length; ++i)
         {
             for(let j=i+1; j<this.points.length; ++j)
@@ -97,13 +102,17 @@ export class Parallelogram {
             }            
         }
 
+        /*
+            1) Looks for parallel lines -> construct parallelogram
+            2) 2 other lines that are intersected are diagonals
+        */
         while(lines.length != 0)
         {
             let l = lines[0];
             let index = undefined;
 
             lines.splice(0, 1);
-
+            // #1
             for(let i=0; i<lines.length; ++i)
             {
                 if(l.isLineParallel(lines[i]))
@@ -113,6 +122,7 @@ export class Parallelogram {
                 }
             }
 
+            // #2
             if(index !== undefined)
             {
                 this.edges.push(l);
@@ -128,10 +138,14 @@ export class Parallelogram {
         return this.diagonals[0].intersectionPoint(this.diagonals[1]);
     }
 
+    /*
+        Area is calculated given two non parallel lines and the angle between them
+    */
     area() {
         let l1 = this.edges[0];
         let l2 = undefined;
 
+        // Find two non parallel lines
         for(let i=1; i<this.edges.length; ++i)
         {
             if(!l1.isLineParallel(this.edges[i]))
@@ -145,6 +159,7 @@ export class Parallelogram {
         let b = undefined;
         let c = undefined;
 
+        // Determine two vectors by given lines
         if(l1.p1.isEqual(l2.p1))
         {
             a = l1.p1;

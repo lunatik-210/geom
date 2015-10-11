@@ -10,6 +10,11 @@ const SHADOW = {
     shadowOpacity: 0.5
 };
 
+/*
+    Just wrappers on geometrical classes
+    Make them drawable by adding Konva models
+*/
+
 export class DrawablePoint extends Point {
     constructor(x, y) {
         super(x, y);

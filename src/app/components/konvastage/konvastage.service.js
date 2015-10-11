@@ -1,6 +1,11 @@
 import {DrawablePoint, DrawableParallelogram, DrawableCircle} from '../../tools/geom.konva.wrapper';
 import {approximateParallelogram, approximateCircle} from '../../tools/geom/solver';
 
+/*
+    You can think of it like a Scene 
+    Responsible for rendering
+*/
+
 export default class KonvastageService {
     constructor($rootScope) {
         'ngInject';
