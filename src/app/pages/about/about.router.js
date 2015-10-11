@@ -32,4 +32,9 @@ export default function routerConfig ($stateProvider, $urlRouterProvider) {
         url: '/testing',
         templateUrl: 'app/pages/about/templates/testing.html'
     });
+
+    $stateProvider.state('about.me', {
+        url: '/me',
+        templateUrl: 'app/pages/about/templates/me.html'
+    });
 }
