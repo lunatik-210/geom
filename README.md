@@ -1,6 +1,6 @@
 # geom
 
-# How to:
+## How to:
 * Install nodejs
 * npm install -g bower 
 * npm install & bower install
