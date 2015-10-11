@@ -15,11 +15,19 @@
     color: black;
   }
   .top-bar-section ul li.active > a:not(.button) {
-      background: #fff;
-      color: black;
+    background: #fff;
+    color: black;
   }
   .top-bar-section ul li.active > a:not(.button):hover {
-      background: #fff;
-      color: black;
+    background: #fff;
+    color: black;
   }
+  .toggle-topbar.menu-icon a {
+    color: black;
+  }
+}
+
+.top-bar.expanded .title-area { 
+  background-color: #fff;
+  border-bottom: 5px solid #EBB05B;
 }
